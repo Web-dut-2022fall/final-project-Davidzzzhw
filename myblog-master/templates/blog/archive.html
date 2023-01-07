@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load blog_tags %}
+
+{% block title%}
+<title>归档_Dxigui的个人博客</title>
+{% endblock %}
+
+{% block meta %}
+<meta name="description" content="对所有文章进行归档处理" >
+<meta name="keyword" content="文章归档" >
+{% endblock %}
+
+{% block content %}
+<main class="col-md-8">
+<article class="post post-1">
+    <header class="entry-header">
+        
+    </header>
+    <ul class="mycategory">
+        {% regroup articles by release_date.year as year_list %}
+        {% for article_year in year_list %}
+        <li class="mycate_list">{{ article_year.grouper }}:&nbsp;年
+            <ul class="mycategory">
+                {% regroup article_year.list by release_date.month as month_list %}
+                {% for month, articles in month_list %}
+                <li class="mycate_list">{{ month }}:&nbsp;月
+                    <ul>
+                        {% for article in articles %}
+                        <li class="mycate_list">{{ article.release_date.month}}&nbsp;月&nbsp;{{ article.release_date.day }}&nbsp;日:&nbsp;<a class="art_list" href="{{ article.get_absolute_url }}">{{ article.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</article>
+</main>
+{% include 'tags_templates/sidebar.html' %}
+{% endblock %}

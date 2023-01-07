@@ -1,0 +1,16 @@
+
+* 基于 Django 1.11 版本开发
+* 后端为 Python 3.5.2
+* 数据库为 MySQL 5.7
+* 网站部署为 Nginx + gunicorn
+* 前端模板出自 [zerenwu](https://github.com/zmrenwu)
+* 其他库请查看 requirements.txt 文件
+
+## 功能
+  * 使用 Django 自带的后台管理系统
+  * 对文章进行分类和归档,以及给文章添加标签
+  * 基于 Haystack + Whoosh + Jieba 的全文搜索,并支持中文
+  * 支持友情链接
+
+
+

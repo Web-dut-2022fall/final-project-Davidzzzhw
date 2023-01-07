@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load blog_tags %}
+
+{% block title %}
+<title>归档_Dxigui的个人博客</title>
+{% endblock %}
+
+{% block meta %}
+<meta name="description" content="按月对文章进行归档" >
+<meta name="keyword" content="归档" >
+{% endblock %}
+
+{% block content %}
+<main class="col-md-8">
+<div class="cate_name"><h2>{{ archive_title }}:&nbsp;{{ archive_year }}&nbsp;年&nbsp;{{ archive_month }}&nbsp;月</h2></div>
+{% for article in archive_articles %}
+{% include 'tags_templates/show_article.html' %}
+{% endfor %}
+</main>
+{% include 'tags_templates/sidebar.html' %}
+{% endblock %}

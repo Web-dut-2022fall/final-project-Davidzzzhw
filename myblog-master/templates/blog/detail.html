@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load blog_tags %}
+
+{% block title %}
+<title>{{ article_detail.title }}_Dxigui的个人博客</title>
+{% endblock %}
+
+{% block meta %}
+<meta name="description" content="{{ article_detail.describe }}" >
+<meta name="keyword" content="{% get_keywords article_detail %}" >
+{% endblock %}
+
+{% block content %}
+<main class="col-md-8">
+<article class="post post-1">
+    <header class="entry-header">
+        <h1 class="entry-title">
+            {{ article_detail.title }}
+        </h1>
+        <div class="entry-meta">
+            <span class="post-category"><a href="#">{{ article_detail.category }}</a></span>
+            <span class="post-date"><a href="#"><time class="entry-date"
+                                                      datetime="2012-11-09T23:15:57+00:00">{{ article_detail.release_date }}</time></a></span>
+            <span class="post-author">{{ article_detail.author }}</span>
+            <span class="comments-link"><a href="#"><i class="far fa-comments"></i>&nbsp;{{ article_detail.view }}</a></span>
+            <span class="views-count"><i class="far fa-eye"></i>&nbsp;</span>
+        </div>
+    </header>
+    <div class="entry-content clearfix">
+        <p class="main-content">{{ article_detail.content|safe }}</p>
+        <p class="modify-date">最后修改于:&nbsp;{{ article_detail.modify_date }}</p>
+    </div>
+</article>
+</main>
+{% include 'tags_templates/sidebar.html' %}
+{% endblock %}

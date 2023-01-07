@@ -1,0 +1,21 @@
+<article class="post post-1">
+    <header class="entry-header">
+        <h1 class="entry-title">
+            <a href="{% url 'detail' pk=article.id %}">{{ article.title }}</a>
+        </h1>
+        <div class="entry-meta">
+            <span class="post-category"><a href="{% url 'one_category' kw=article.category.id %}">{{ article.category }}</a></span>
+            <span class="post-date"><a href="{% url 'one_archive' year=article.release_date.year month=article.release_date.month %}"><time class="entry-date"
+                                                      datetime="2012-11-09T23:15:57+00:00">{{ article.release_date }}</time></a></span>
+            <span class="post-author">{{ article.author }}</span>
+            <span class="comments-link"><a href="#"><i class="far fa-comments"></i>&nbsp;{{ article.view }}</a></span>
+            <span class="views-count"><i class="far fa-eye"></i>&nbsp;</span>
+        </div>
+    </header>
+    <div class="entry-content clearfix">
+        <p class="main-content">{{ article.describe }}...</p>
+        <div class="read-more cl-effect-14">
+            <a href="{% url 'detail' pk=article.id %}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+        </div>
+    </div>
+</article>

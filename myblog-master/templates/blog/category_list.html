@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load blog_tags %}
+
+{% block title %}
+<title>分类_Dxigui的个人博客</title>
+{% endblock %}
+
+{% block meta %}
+<meta name="description" content="" >
+<meta name="keyword" content="" >
+{% endblock %}
+
+{% block content %}
+<main class="col-md-8">
+<article class="post post-1">
+    <header class="entry-header">
+        
+    </header>
+    <ul class="mycategory">
+        {% for category in category_list %}
+        <li class="mycate_list">
+            <p>{{ category.name }}</p>
+            <ul class="cate_article">
+                {% category_article category as art_list %}
+                {% for art in art_list %}
+                <li><a class="art_list" href="{{ art.get_absolute_url }}">{{ art.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+
+        {% endfor %}
+    </ul>
+</article>
+</main>
+{% include 'tags_templates/sidebar.html' %}
+{% endblock %}

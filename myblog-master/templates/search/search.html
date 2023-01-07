@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load highlight %}
+{% load blog_tags %}
+
+
+{% block title %}
+<title>搜索_Dxigui的个人博客</title>
+{% endblock %}
+
+{% block meta %}
+
+{% endblock %}
+
+{% block content %}
+{% if query %}
+{% for article in page.object_list %}
+<article class="post post-1">
+    <header class="entry-header">
+        <h1 class="entry-title">
+            <a href="{% url 'detail' pk=article.object.id %}">{% highlight article.object.title with query %}</a>
+        </h1>
+        <div class="entry-meta">
+            <span class="post-category"><a href="{% url 'one_category' kw=article.object.category.id %}">{{ article.object.category }}</a></span>
+            <span class="post-date"><a href="{% url 'one_archive' year=article.object.release_date.year month=article.object.release_date.month %}"><time class="entry-date"
+                                                      datetime="2012-11-09T23:15:57+00:00">{{ article.object.release_date }}</time></a></span>
+            <span class="post-author">{{ article.object.author }}</span>
+            <span class="comments-link"><a href="#"><i class="far fa-comments"></i>&nbsp;{{ article.object.view }}</a></span>
+            <span class="views-count"><i class="far fa-eye"></i>&nbsp;{{ article.object.view }}</span>
+        </div>
+    </header>
+    <div class="entry-content clearfix">
+        <p class="main-content">{% highlight article.object.content with query %}</p>
+        <div class="read-more cl-effect-14">
+            <a href="{% url 'detail' pk=article.object.id %}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+        </div>
+    </div>
+</article>
+{% empty %}
+    <p>暂无内容</p>
+{% endfor %}
+{% else %}
+    <p>请输入关键词</p>
+{% endif %}
+{% endblock %}

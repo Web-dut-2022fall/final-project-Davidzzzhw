@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles%}
+
+{% block title %}
+<title>首页_Dxigui的个人博客</title>
+{% endblock%}
+
+{% block meta %}
+<meta name="description" content="" >
+<meta name="keyword" content="Python开发,爬虫,个人博客" >
+{% endblock %}
+
+{% block copyright %}
+<div class="copyrights">Collect from <a href="http://www.cssmoban.com/">网页模板</a></div>
+<div class="copyrights">Modified by <a href="http://zmrenwu.com/">追梦人物的博客</a></div>
+<div class="copyrights">Remodified by <a href="">Dxigui 个人博客</a></div>
+{% endblock %}
+
+{% block content %}
+<main class="col-md-8">
+{% for article in article_list %}
+{% include 'tags_templates/show_article.html' %}
+{% empty %}
+    <div class="no-post"> 暂时还没有发布文章 </div>
+{% endfor %}
+
+{% if is_paginated %}
+<div class="pagination-simple">
+    {% if page_obj.has_previous %}
+    <a class="previous" href="?page={{ page_obj.previous_page_number }}">上一页</a>
+    {% endif %}
+    <span class="current">第 {{ page_obj.number }} 页 / 共 {{ paginator.num_pages }} 页</span>
+    {% if page_obj.has_next %}
+    <a class="next" href="?page={{ page_obj.next_page_number }}">下一页</a>
+    {% endif %}
+</div>
+{% endif %}
+</main>
+
+<!-- sidebar -->
+{% include 'tags_templates/sidebar.html' %}
+{% endblock %}
+
+
